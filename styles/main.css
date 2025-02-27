@@ -1,0 +1,1196 @@
+@font-face {
+    font-family: 'Power Grotesk';
+    src: url('../assets/fonts/PowerGrotesk-UltraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Mabry Pro';
+    src: url('../assets/fonts/MabryPro-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1e1235;
+    color: white;
+    font-family: 'Mabry Pro', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* 添加背景动效 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(68, 0, 206, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(80, 0, 117, 0.2) 0%, transparent 40%),
+        radial-gradient(circle at 40% 80%, rgba(68, 0, 206, 0.2) 0%, transparent 50%),
+        radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 90% 10%, rgba(255, 0, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(0, 255, 255, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 70% 70%, rgba(68, 0, 206, 0.1) 0%, transparent 35%);
+    pointer-events: none;
+    z-index: -1;
+    animation: gradientMove 15s ease-in-out infinite alternate;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* 添加光晕效果 */
+.glow-effect {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(68, 0, 206, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 为各个section添加渐入动画 */
+.about-section,
+.rewards-section,
+.numbers-section,
+.why-section,
+.how-section,
+.tokenomics-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    margin: 120px auto 0;
+}
+
+.about-section.visible,
+.rewards-section.visible,
+.numbers-section.visible,
+.why-section.visible,
+.how-section.visible,
+.tokenomics-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 50px;
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.logo {
+    height: 40px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 40px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Power Grotesk', sans-serif;
+    font-weight: 800;
+}
+
+/* Hero Section */
+.hero {
+    max-width: 1350px;
+    margin: 80px auto 0;
+    display: flex;
+    gap: 80px;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -40px;
+        left: -60px;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/images/overlay.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        opacity: 1;
+        z-index: -1;
+        @media (max-width: 1024px) {
+            display: none;
+        }
+    }
+}
+
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 56px;
+    margin-bottom: 30px;
+    white-space: pre-line;
+}
+
+.hero p {
+    font-size: 24px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 40px;
+    line-height: 1.4;
+}
+
+.hero-image {
+    flex: 1;
+    position: relative;
+}
+
+.image-placeholder {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    position: relative;
+}
+
+/* 添加重叠的图片层 */
+.image-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../assets/images/image-bg.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+.hero-image-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.hero-image-1 {
+    background-image: url('../assets/images/image1.png');
+    z-index: 2;
+}
+
+.hero-image-2 {
+    background-image: url('../assets/images/image2.png');
+    z-index: 3;
+}
+
+.hero-image-3 {
+    background-image: url('../assets/images/image3.png');
+    z-index: 4;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    color: white;
+    text-decoration: none;
+    border-radius: 300px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(68, 0, 206, 0.3);
+}
+
+/* Social Section */
+.social-section {
+    max-width: 1350px;
+    margin: 80px auto 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    height: 100px;
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.social-container {
+    display: flex;
+    gap: 30px;
+    animation: marquee 15s linear infinite;
+    width: fit-content;
+    padding: 0 50px;
+}
+
+.social-card {
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    gap: 15px;
+    min-width: 280px;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+}
+
+.social-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: white;
+}
+
+/* About Section */
+.about-section {
+    max-width: 1350px;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.about-image {
+    flex: 1;
+    aspect-ratio: 1;
+    background-image: url('../assets/images/image4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.about-content {
+    flex: 1;
+}
+
+.about-subtitle {
+    background: linear-gradient(135deg, #4400CE, #500075);
+    background-size: 100%;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.about-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.about-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    padding: 10px;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    border-radius: 12px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    &:hover {
+        transform: translateY(-5px);
+    }
+}
+
+.feature-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        #4400CE 0%,
+        #500075 100%
+    );
+    filter: blur(12px);
+    transform: translateY(20%);
+    z-index: -1;
+    opacity: 0.6;
+}
+
+.feature-text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Rewards Section */
+.rewards-section {
+    max-width: 1350px;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 120px;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/images/overlay2.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+        opacity: 0.05;
+        z-index: -1;
+        @media (max-width: 1024px) {
+            display: none;
+        }
+    }
+}
+
+.rewards-subtitle {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.rewards-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 20px;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.rewards-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rewards-note {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 60px;
+    font-style: italic;
+}
+
+.rewards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reward-item {
+    border-radius: 20px;
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.reward-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.reward-description {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    line-height: 1.4;
+}
+
+/* Numbers Section */
+.numbers-section {
+    max-width: 1350px;
+    padding: 0;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.numbers-content {
+    flex: 1;
+}
+
+.numbers-image {
+    flex: 1;
+    aspect-ratio: 1;
+    background-image: url('../assets/images/image5.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.numbers-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.numbers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.numbers-item {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.numbers-highlight {
+    background: linear-gradient(135deg, #fff 0%, #4400CE 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 32px;
+    display: inline-block;
+}
+
+/* Animations */
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 50px));
+    }
+}
+
+/* How It Works Section */
+.how-section {
+    max-width: 1350px;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.how-subtitle {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.how-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.how-cards {
+    display: flex;
+    gap: 30px;
+    margin: 0 auto;
+    position: relative;
+    height: 450px;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 380px;
+    position: absolute;
+    transition: all 0.5s ease;
+    opacity: 0.5;
+    cursor: pointer;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.card.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+    cursor: default;
+}
+
+.card[data-index="2"] {
+    transform: translateX(120%) scale(0.8);
+}
+
+.card[data-index="3"] {
+    transform: translateX(240%) scale(0.7);
+}
+
+.card[data-index="4"] {
+    transform: translateX(360%) scale(0.6);
+}
+
+.card-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 24px;
+    color: white;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin: 30px auto 0;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 25%;
+    height: 100%;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Why Section */
+.why-section {
+    max-width: 1350px;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    padding: 0;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.why-image {
+    flex: 1;
+    aspect-ratio: 1;
+    background-image: url('../assets/images/image6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 20px;
+}
+
+.why-content {
+    flex: 1;
+}
+
+.why-subtitle {
+    background: linear-gradient(135deg, #4400CE, #500075);
+    background-size: 100%;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    display: inline-block;
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.why-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.why-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.why-features-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 24px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.why-features-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+}
+
+.why-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Tokenomics Section */
+.tokenomics-section {
+    max-width: 1350px;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    padding-bottom: 120px;
+}
+
+.tokenomics-subtitle {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 42px;
+    margin-bottom: 60px;
+    font-weight: bold;
+}
+
+.tokenomics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tokenomics-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.tokenomics-title {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 20px;
+}
+
+.tokenomics-value {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 38px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+/* CTA Section */
+.cta-section {
+    margin: 80px auto 0;
+    padding: 120px 0;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(68, 0, 206, 0.3), rgba(80, 0, 117, 0.3));
+    width: 100%;
+    overflow: hidden;
+}
+
+.cta-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 48px;
+    margin-bottom: 40px;
+    max-width: 1350px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 40px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.social-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #4400CE, #500075);
+    color: white;
+    text-decoration: none;
+    border-radius: 300px;
+    font-family: 'Power Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.social-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(68, 0, 206, 0.3);
+}
+
+.social-button-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* 专门处理 Twitter SVG 图标的样式 */
+.social-button img.social-button-icon {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    object-fit: contain;
+}
+
+/* Footer */
+.footer {
+    padding: 60px 0 30px;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+    z-index: 1;
+}
+
+.footer-content {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer-brand-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-social-icons svg, 
+.footer-social-icons img {
+    width: 24px;
+    height: 24px;
+    color: white;
+    filter: brightness(0) invert(1);
+    transition: opacity 0.3s ease;
+}
+
+.footer-social-icons a:hover svg,
+.footer-social-icons a:hover img {
+    opacity: 0.8;
+}
+
+.footer-logo {
+    height: 40px;
+    width: fit-content;
+}
+
+.footer-name {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-self: end;
+}
+
+.footer-title {
+    font-family: 'Power Grotesk', sans-serif;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.3s ease;
+}
+
+.footer-links a:hover {
+    opacity: 0.8;
+}
+
+.footer-bottom {
+    max-width: 1350px;
+    margin: 60px auto 0;
+    padding: 30px 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+.card[data-index="1"] .card-image {
+    background-image: url('../assets/images/h1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card[data-index="2"] .card-image {
+    background-image: url('../assets/images/h2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card[data-index="3"] .card-image {
+    background-image: url('../assets/images/h3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.card[data-index="4"] .card-image {
+    background-image: url('../assets/images/h4.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.about-section::after,
+.rewards-section::after,
+.numbers-section::after,
+.why-section::after,
+.how-section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 60px;
+    background-image: url('../assets/images/line.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 1;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    /* iPad 端样式 */
+    .hero {
+        flex-direction: column;
+        margin: 40px auto 0;
+        gap: 40px;
+    }
+
+    .about-section,
+    .numbers-section,
+    .why-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rewards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tokenomics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        position: relative;
+    }
+
+    .tokenomics-item:last-child {
+        grid-column: 1 / -1;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+
+    .about-image,
+    .numbers-image,
+    .why-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .image-placeholder {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 手机端样式 */
+    nav {
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 20px;
+    }
+
+    .about-title,
+    .numbers-title,
+    .why-title,
+    .how-subtitle,
+    .cta-title {
+        font-size: 36px;
+    }
+
+    .rewards-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tokenomics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .social-button {
+        width: auto;
+        min-width: 200px;
+        justify-content: center;
+    }
+
+    /* 调整卡片布局 */
+    .how-cards {
+        height: auto;
+        flex-direction: column;
+        perspective: none;
+        position: relative;
+    }
+    
+    .card {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        opacity: 1 !important;
+        transform: none !important;
+        margin-bottom: 20px;
+    }
+    
+    .card:not(.active) {
+        display: none;
+    }
+
+    /* 添加移动端箭头按钮 */
+    .mobile-nav-arrows {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    
+    .arrow-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .arrow-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .arrow-btn svg {
+        width: 20px;
+        height: 20px;
+        color: white;
+    }
+    
+    .arrow-btn.prev svg {
+        transform: rotate(180deg);
+    }
+
+    /* 调整图片显示 */
+    .about-image,
+    .numbers-image,
+    .why-image {
+        aspect-ratio: 1;
+        width: 100%;
+        background-size: contain;
+    }
+    
+    .image-placeholder {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .hero-image-layer {
+        background-size: contain;
+    }
+    
+    .card-image {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto 20px;
+    }
+    
+    /* 调整分隔线 */
+    .about-section::after,
+    .rewards-section::after,
+    .numbers-section::after,
+    .why-section::after,
+    .how-section::after {
+        width: calc(100% - 40px);
+    }
+}
+
+/* 通用响应式调整 */
+@media (max-width: 1350px) {
+    .hero,
+    .about-section,
+    .rewards-section,
+    .numbers-section,
+    .why-section,
+    .how-section,
+    .tokenomics-section {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+} 
